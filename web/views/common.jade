@@ -1,0 +1,104 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        meta(http-equiv="X-UA-Compatible",  content="IE=edge")
+        meta(name="viewport",  content="width=device-width, initial-scale=1")
+        //- 禁止浏览器从本地机的缓存中调阅页面内容（访问者将无法脱机浏览）
+        meta(http-equiv='pragma', content='no-cache')
+        //- 清除缓存（再访问这个网站要重新下载！）
+        meta(http-equiv='cache-control', content='no-cache')
+        //- 设定网页的到期时间
+        meta(http-equiv='expires', content='0')
+        //- 上述meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！
+        title 我的首页
+        link(rel='stylesheet', href='/javascript/libs/bootstrap/css/bootstrap.min.css')
+        //link(rel='stylesheet', href='/javascript/libs/font-awesome/css/font-awesome.min.css')
+        //link(rel='stylesheet', href='/javascript/libs/ionicons/css/ionicons.css')
+        //link(rel='stylesheet', href='/javascript/libs/jBox/css/jBox.css')
+        //link(rel='stylesheet', href='/javascript/libs/fullPage/css/jquery.fullPage.css')
+        //link(rel='stylesheet', href='/javascript/libs/fullPage/css/my-fullPage.css')
+        //link(rel='stylesheet', href='/javascript/libs/jquery-bxslider/css/jquery.bxslider.css')
+        link(rel='stylesheet', href='/javascript/libs/animate/animate.css')
+        //link(rel='stylesheet', href='/javascript/libs/drag-verify/css/drag.css')
+        //
+        ////- 页面样式
+        //link(rel='stylesheet', href='/style/less/app.min.css')
+        //- link(rel='stylesheet/less', href='/style/less/app.less')
+        //- less，需要在页面加载前解析less文件，在这引入
+        //- script(src='/javascript/libs/less/less.js')
+    body
+        block body
+            //- 正在加载按钮
+            mixin loading-btn(id, name, type)
+                button(id='#{id}', class='btn btn-base btn-#{type} loading-button waves-effect waves-light', type='button')
+                    span #{name}
+                    img(src='/style/images/loading-btn-#{type}.gif')
+
+            //- 正在加载按钮(无btn-base)
+            mixin loading-normal-btn(id, name, type)
+                button(id='#{id}', class='btn btn-#{type} loading-button waves-effect waves-light',type='button')
+                    span #{name}
+                    img(src='/style/images/loading-btn-#{type}.gif')
+            form.form#userForm(action="/control/backstage/user")
+                .form-group
+                    label.form-label
+                        span.red-star
+                        span 账号：
+                    .form-elem
+                        input.form-input(name='userAccount', data-name='userAccount', maxlength='32')
+                        span.form-tip
+                .form-group#userPasswordGroup
+                    label.form-label
+                        span.red-star
+                        span 密码：
+                    .form-elem
+                        input.form-input(data-name='userPassword', type='password', maxlength='32')
+                        span.form-tip
+                .form-group#userPasswordAgainGroup
+                    label.form-label
+                        span.red-star
+                        span 密码确认：
+                    .form-elem
+                        input.form-input(data-name='userPasswordAgain', type='password', maxlength='32')
+                        span.form-tip
+
+                //- 联系人信息
+                .add-module-title
+                    span 联系人信息
+                .form-group
+                    .form-elem
+                        input.upload-input(name='attenCredentials', type='file')
+                .form-group
+                    .form-elem
+                        .form-btn-bar
+                            +loading-btn('submitUserBtn', '提交', 'primary')
+
+        //- 引入页面依赖的JS
+        script(src='/javascript/libs/jquery/jquery.min.js')
+        script(src='/javascript/libs/bootstrap/js/bootstrap.min.js')
+        //script(src='/javascript/libs/seajs/sea-debug.js')
+        script(src='/javascript/libs/backbone/underscore-min.js')
+        script(src='/javascript/libs/backbone/backbone-min.js')
+        //script(src='/javascript/libs/fullPage/js/jquery.fullPage.min.js')
+        //script(src='/javascript/libs/fullPage/js/jquery.easings.min.js')
+        //script(src='/javascript/libs/fullPage/js/jquery.slimscroll.min.js')
+        //script(src='/javascript/libs/jquery-bxslider/js/jquery.bxslider.js')
+        //script(src='/javascript/libs/drag-verify/js/drag.js')
+        //
+        ////- 提示组件
+        //script(src='/javascript/libs/jBox/js/jBox.js')
+        //
+        ////- 页面公共类
+        ////- script(src='/javascript/common/common.min.js')
+        //script(src='/javascript/common/global.js')
+        //script(src='/javascript/common/util.js')
+        //script(src='/javascript/common/plugin.js')
+        //
+        //script.
+        //    //- 引入公共的逻辑，与页面逻辑没有依赖性
+        //    seajs.use('/javascript/modules/common_portal.js', function (module){
+        //        var m = new module();
+        //    });
+        ////- 每个页面加载各自的js
+        //block includejs
